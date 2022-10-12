@@ -21,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.kevin.netgemtest.DataAdapter;
 import com.kevin.netgemtest.Model.DataModel;
 import com.kevin.netgemtest.MySingleton;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
  * Use the {@link SearchGifFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchGifFragment extends Fragment {
+public class SearchGifFragment extends BottomSheetDialogFragment {
     ArrayList<DataModel> dataModelArrayListe = new ArrayList<>();
 
     RecyclerView recyclerView;

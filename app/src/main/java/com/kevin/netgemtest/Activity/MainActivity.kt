@@ -19,6 +19,7 @@ import com.giphy.sdk.ui.GiphyFrescoHandler
 import com.giphy.sdk.ui.themes.GPHTheme
 import com.giphy.sdk.ui.themes.GridType
 import com.giphy.sdk.ui.views.GiphyDialogFragment
+import com.kevin.netgemtest.Fragment.SearchGifFragment
 import com.kevin.netgemtest.R
 import com.kevin.netgemtest.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
@@ -58,9 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         //We call the fragment GiphyDialogFragment when the button is clicked
         binding.gifButton.setOnClickListener {
-            binding.cardView.visibility = View.GONE
-            binding.gifButton.visibility = View.GONE
-            view.visibility =  View.VISIBLE
+            // binding.cardView.visibility = View.GONE
+            // binding.gifButton.visibility = View.GONE
+            // view.visibility =  View.VISIBLE
+
+            val bottomSheetFragment = SearchGifFragment()
+            bottomSheetFragment.show(supportFragmentManager,"Tag")
 
         }
     }

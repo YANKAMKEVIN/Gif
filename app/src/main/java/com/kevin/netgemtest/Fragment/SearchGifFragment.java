@@ -38,7 +38,7 @@ import java.util.ArrayList;
  * Use the {@link SearchGifFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchGifFragment extends BottomSheetDialogFragment {
+public class SearchGifFragment extends BaseBottomSheet {
     ArrayList<DataModel> dataModelArrayListe = new ArrayList<>();
 
     RecyclerView recyclerView;
@@ -73,8 +73,12 @@ public class SearchGifFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerView_blank);
         searchbt = view.findViewById(R.id.searchBtn);
         editText = view.findViewById(R.id.searchInput);
@@ -106,11 +110,11 @@ public class SearchGifFragment extends BottomSheetDialogFragment {
                     e.printStackTrace();
                 }
             }},new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(), "Error" +error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Error" +error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         MySingleton.getInstance(getActivity()).addToRequest(gifsRequest);
         //Volley.newRequestQueue(getContext()).add(gifsRequest);
@@ -162,12 +166,10 @@ public class SearchGifFragment extends BottomSheetDialogFragment {
                 MySingleton.getInstance(getActivity()).addToRequest(gifsRequest);
             }
         });
-        return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    protected boolean isFullScreen() {
+        return true;
     }
 }
